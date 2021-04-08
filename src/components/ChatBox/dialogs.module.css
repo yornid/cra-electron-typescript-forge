@@ -1,0 +1,6 @@
+.dialogs {
+  border: 2px solid #eac;
+  border-radius: 10px;
+  margin: 2px 4px;
+  flex: 0 1 90%;
+}
