@@ -1,19 +1,18 @@
-import React, { useState } from 'react';
+import React from 'react'
+import { observer } from 'mobx-react-lite'
 
 import s from './myWord.module.css'
 
-function MyWord() {
-  const onChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => setWord(e.currentTarget.value)
-  const send = () => {
-    console.log('send')
-  }
-  const [word, setWord] = useState('')
+function MyWord({ Chat }: any) {
+  const onChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => Chat.setWord(e.currentTarget.value)
+  const send = () => Chat.sendWord()
+  console.log('in myWord!!!!!');
   return (
     <div className={s.myWord}>
-      <textarea className={s.words} value={word} onChange={onChange} />
-      <button className={s.send} onClick={send}>send</button>
+      <textarea value={Chat.myWord} onChange={onChange} />
+      <button onClick={send}>send</button>
     </div>
   )
 }
 
-export default MyWord
+export default observer(MyWord)

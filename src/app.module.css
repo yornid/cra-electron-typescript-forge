@@ -4,11 +4,12 @@
   height: 100vh;
   box-sizing: border-box;
   display: flex;
+  justify-content: space-between;
 }
 
 .feeds {
   border: 1px solid #0f0;
-  flex: 0 1 25%;
+  flex: 1 0 24%;
 }
 
 .main {
