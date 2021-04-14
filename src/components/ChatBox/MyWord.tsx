@@ -3,16 +3,22 @@ import { observer } from 'mobx-react-lite'
 
 import s from './myWord.module.css'
 
-function MyWord({ Chat }: any) {
-  const onChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => Chat.setWord(e.currentTarget.value)
-  const send = () => Chat.sendWord()
-  console.log('in myWord!!!!!');
+function MyWord({ myWord, changeHandler, submitHandler }: any) {
+  const onChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    changeHandler(e.currentTarget.value)
+  }
   return (
     <div className={s.myWord}>
-      <textarea value={Chat.myWord} onChange={onChange} />
-      <button onClick={send}>send</button>
+      <textarea value={myWord} onChange={onChange} />
+      <button onClick={submitHandler}>send</button>
     </div>
   )
 }
 
-export default observer(MyWord)
+export const MyWordHOC = observer(({ Chat }: any) => {
+  return (
+    <MyWord myWord={Chat.myWord} changeHandler={Chat.setWord} submitHandler={Chat.sendWord} />
+  )
+})
+
+export default MyWord

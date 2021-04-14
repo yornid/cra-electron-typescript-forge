@@ -1,5 +1,4 @@
 .streamVideo {
-  border: 1px solid #00f;
   position: relative;
 }
 
@@ -8,14 +7,16 @@
   position: absolute;
   top: 0;
   left: 0;
+  border-radius: 4px;
 }
 
 .video {
-  border: 1px solid #0ff;
   width: 100%;
   z-index: -10;
+  visibility: hidden;
 }
 
 .canvas {
+  border: 3px solid #0cf;
   width: 100%;
 }

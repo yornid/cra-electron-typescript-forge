@@ -3,6 +3,7 @@
   border-radius: 10px;
   margin: 2px 4px;
   flex: 0 1 90%;
+  overflow-y: auto;
 }
 
 .wrap {
@@ -27,7 +28,8 @@
   word-break: break-all;
 }
 
-.ts {
+.time {
   text-align: right;
   font-style: italic;
+  display: block;
 }

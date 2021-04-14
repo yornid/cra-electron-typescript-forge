@@ -1,18 +1,21 @@
-import React, { useContext } from 'react'
-import { pathOr } from 'ramda'
+import React, { useEffect } from 'react'
 
-import { RootContext } from '../../StoreProvider'
 import Dialogs from './Dialogs'
-import MyWord from './MyWord'
+import { MyWordHOC } from './MyWord'
 
 import s from './chatBox.module.css'
 
-function ChatBox() {
-  const Chat = pathOr({}, ['Chat'], useContext(RootContext))
+const t: number = 5000;
+
+function ChatBox({ Chat }: any) {
+  useEffect(() => {
+    const tId = setInterval(Chat.getLatestDialogs, t)
+    return () => clearInterval(tId)
+  }, [Chat])
   return (
     <div className={s.chatBox}>
-      <Dialogs Chat={Chat} />
-      <MyWord Chat={Chat} />
+      <Dialogs dialogs={Chat.dialogs} />
+      <MyWordHOC Chat={Chat} />
     </div>
   )
 }
