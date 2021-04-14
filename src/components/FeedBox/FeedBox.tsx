@@ -1,33 +1,30 @@
 import React, { useEffect } from 'react'
 import { observer } from 'mobx-react-lite'
+import classnames from 'classnames'
+
+import { FeedType } from '../../StoreProvider'
+
+import s from './feedBox.module.css'
 
 const t: number = 10000
 
-function FeedBox({ Feed: any }: any) {
+function FeedBox({ Feed }: any) {
   useEffect(() => {
-    if (Feed) {
-      const tId = setInterval(Feed.updateFeeds, t)
-      return () => clearInterval(tId)
-    }
-  }, [])
-  const { feeds } = Feed
-  if (feeds.isEmpty()) return null
-  const a = new Array(feeds.size())
-  let h = feeds.head
-  let i = a.length - 1;
-  while (h !== null) {
-    a[i--] = h;
-    h = h.next;
-  }
+    Feed.updateFeeds()
+    const tId = setInterval(Feed.updateFeeds, t)
+    return () => clearInterval(tId)
+  }, [Feed])
   return (
-    <ul>
-      { a.map(item => {
-        <li key={item.id}>
-          <img src={item.imgURL} alt={item.id} />
-          <h4>{item.title}</h4>
-          <small>{item.desc}</small>
+    <ul className={s.feedBox}>
+      { Feed.feeds.map((item: FeedType) => (
+        <li className={s.wrap} key={item.id}>
+          <img className={classnames('img', s.img)} src={item.imgURL} alt={item.id} />
+          <div className={s.right}>
+            <h4 className={s.break}>{item.title}</h4>
+            <small className={s.break}>{item.desc}</small>
+          </div>
         </li>
-      })}
+      ))}
     </ul>
   )
 }

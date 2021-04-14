@@ -1,5 +1,5 @@
 import React, { createContext, useContext } from 'react'
-import { makeAutoObservable, runInAction } from "mobx"
+import { makeAutoObservable, runInAction, observable } from "mobx"
 import axios from 'axios'
 
 import { randomDialog, randomFeeds, Queue } from './utils'
@@ -23,16 +23,33 @@ export interface FeedType {
 }
 
 class Feed {
-  feeds = new Queue()
+  feedsQ = new Queue()
+  feeds: FeedType[] = []
+
+  constructor() {
+    makeAutoObservable(this, {
+      feedsQ: false,
+      feeds: observable.ref,
+    })
+  }
+
   updateFeeds = async () => {
     try {
       await axios.get('/feeds')
     } catch (e) {
-      let feeds = randomFeeds()
+      const feeds = randomFeeds()
       if (feeds.length > 0) {
+        for (let item of feeds) this.feedsQ.push(item)
+        for (let i = this.feedsQ.size(); i > 20; i--) this.feedsQ.pop()
+        const a = new Array(this.feedsQ.size())
+        let h = this.feedsQ.head
+        let i = this.feedsQ.size() - 1
+        while (h) {
+          a[i--] = h.val
+          h = h.next
+        }
         runInAction(() => {
-          for (let item of feeds) this.feeds.push(item)
-          for (let i = this.feeds.size(); i > 20; i--) this.feeds.pop()
+          this.feeds = a
         })
       }
     }

@@ -70,10 +70,10 @@ export class Queue {
   push(val: any) {
     this.count += 1
     let newNode = new Node(val)
-    if (!this.isEmpty()) {
-      this.head = newNode;
-      this.tail = newNode;
-      return;
+    if (this.isEmpty()) {
+      this.head = newNode
+      this.tail = newNode
+      return
     }
     if (this.tail) {
       this.tail.next = newNode
