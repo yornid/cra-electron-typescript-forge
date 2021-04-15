@@ -2,7 +2,7 @@ import React, { createContext, useContext } from 'react'
 import { makeAutoObservable, runInAction, observable } from "mobx"
 import axios from 'axios'
 
-import { randomDialog, randomFeeds, Queue } from './utils'
+import { randomDialog, Queue } from './utils'
 
 const name = 'Ronald'
 
@@ -33,30 +33,22 @@ class Feed {
     })
   }
 
-  updateFeeds = async () => {
-    try {
-      await axios.get('/feeds')
-    } catch (e) {
-      const feeds = randomFeeds()
-      if (feeds.length > 0) {
-        for (let item of feeds) this.feedsQ.push(item)
-        for (let i = this.feedsQ.size(); i > 20; i--) this.feedsQ.pop()
-        const a = new Array(this.feedsQ.size())
-        let h = this.feedsQ.head
-        let i = this.feedsQ.size() - 1
-        while (h) {
-          a[i--] = h.val
-          h = h.next
-        }
-        runInAction(() => {
-          this.feeds = a
-        })
-      }
+  updateFeeds(feeds: FeedType[]) {
+    const Q = this.feedsQ
+    for (let item of feeds) Q.push(item)
+    for (let i = Q.size(); i > 20; i--) Q.pop()
+    const a = new Array(Q.size())
+    let h = Q.head
+    let i = Q.size() - 1
+    while (h) {
+      a[i--] = h.val
+      h = h.next
     }
+    this.feeds = a
   }
 }
 
-export interface DialogProps { 
+export interface DialogType { 
   name: string
   word: string
   time: string
@@ -65,7 +57,7 @@ export interface DialogProps {
 }
 
 class Chat {
-  dialogs: DialogProps[] = []
+  dialogs: DialogType[] = []
   myWord: string = ''
 
   constructor() {

@@ -5,7 +5,7 @@ import { MyWordHOC } from './MyWord'
 
 import s from './chatBox.module.css'
 
-const t: number = 5000;
+const t: number = 3000;
 
 function ChatBox({ Chat }: any) {
   useEffect(() => {

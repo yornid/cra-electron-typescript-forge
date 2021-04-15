@@ -1,4 +1,4 @@
-import { DialogProps, FeedType } from './StoreProvider'
+import { DialogType, FeedType } from './StoreProvider'
 import { v4 as uuidv4 } from 'uuid'
 
 const alphaNum = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789'
@@ -16,7 +16,7 @@ export function randomString(): string {
   return a.join('')
 }
 
-export function randomDialog(): DialogProps | null {
+export function randomDialog(): DialogType | null {
   let tof = Math.random()
   if (tof >= 0.6) {
     let d = new Date();

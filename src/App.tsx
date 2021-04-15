@@ -18,7 +18,11 @@ function App() {
       </div>
       <div className={s.main}>
         <StreamVideo /> 
-        <div className={s.ads}>
+        <div>
+          <h2>Ads</h2>
+          <ul>
+            <li><iframe title="first ad" className={s.ad} src="https://codecanyon.img.customer.envatousercontent.com/files/199668283/item_preview.png?auto=compress%2Cformat&q=80&fit=crop&crop=top&max-h=8000&max-w=590&s=fc8158867c973fed95f0aba517019dd2" /></li>
+          </ul>
         </div>
       </div>
        <ChatBox Chat={rootCtx.Chat} />

@@ -2,7 +2,7 @@ import React, { useLayoutEffect, useRef } from 'react'
 import classnames from 'classnames'
 import { observer } from 'mobx-react-lite'
 
-import { DialogProps } from '../../StoreProvider'
+import { DialogType } from '../../StoreProvider'
 
 import s from './dialogs.module.css';
 
@@ -16,7 +16,7 @@ function Dialogs({ dialogs = [] }: any) {
   return (
     <div ref={el} className={s.dialogs}>
       <ul className={s.wrap}>
-        { dialogs.map((d: DialogProps) => (
+        { dialogs.map((d: DialogType) => (
           <li className={classnames(s.item, { [s.owner]: d.owner })} key={d.ts}>
             <span className={s.name}>{ d.name }: </span>
             <span className={s.say}>{ d.word }</span>

@@ -9,7 +9,7 @@ function MyWord({ myWord, changeHandler, submitHandler }: any) {
   }
   return (
     <div className={s.myWord}>
-      <textarea value={myWord} onChange={onChange} />
+      <textarea className={s.wordBox} value={myWord} onChange={onChange} />
       <button onClick={submitHandler}>send</button>
     </div>
   )

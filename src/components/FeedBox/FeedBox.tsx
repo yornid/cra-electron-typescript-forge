@@ -1,17 +1,26 @@
 import React, { useEffect } from 'react'
 import { observer } from 'mobx-react-lite'
 import classnames from 'classnames'
+import axios from 'axios'
 
 import { FeedType } from '../../StoreProvider'
+import { randomFeeds } from '../../utils'
 
 import s from './feedBox.module.css'
 
-const t: number = 10000
+const t: number = 5000
 
 function FeedBox({ Feed }: any) {
   useEffect(() => {
-    Feed.updateFeeds()
-    const tId = setInterval(Feed.updateFeeds, t)
+    async function loop() {
+      try {
+        await axios.get('/feeds')
+      } catch (e) {
+        Feed.updateFeeds(randomFeeds())
+      }
+    }
+    loop()
+    const tId = setInterval(loop, t)
     return () => clearInterval(tId)
   }, [Feed])
   return (
