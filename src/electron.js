@@ -22,8 +22,19 @@ const createWindow = () => {
 
 if (isDev) app.commandLine.appendSwitch('ignore-certificate-errors')
 
+if (require("electron-squirrel-startup")) {
+  app.quit();
+}
+
 app.whenReady().then(() => {
   createWindow()
+
+  if (isDev) {
+    const devTools = require("electron-devtools-installer");
+    devTools.default(devTools.REACT_DEVELOPER_TOOLS)
+      .then(name => console.log(`Added Extension: ${name}`))
+      .catch(error => console.log(`An error occurred: , ${error}`));
+  }
 
   app.on('activate', () => {
     if (BrowserWindow.getAllWindows.length === 0) createWindow()
