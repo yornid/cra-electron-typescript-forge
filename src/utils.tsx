@@ -18,7 +18,7 @@ export function randomString(): string {
 
 export function randomDialog(): DialogType | null {
   let tof = Math.random()
-  if (tof >= 0.6) {
+  if (tof >= 0.6 || true) {
     let d = new Date();
     let m = d.getMinutes();
     return {

@@ -16,3 +16,16 @@
 .main {
   flex: 0 1 auto;
 }
+
+.adWrap {
+  width: 100%;
+  height: 100px;
+  margin-top: 10px;
+  border: 2px solid #efa;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.ad {
+  width: 100%;
+}

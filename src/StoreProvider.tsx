@@ -69,6 +69,7 @@ class Chat {
   }
 
   sendWord = (): void => {
+    if (this.myWord.trim() === '') return
     const d = new Date();
     const m = d.getMinutes();
     this.dialogs.push({
