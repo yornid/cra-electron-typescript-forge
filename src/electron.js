@@ -1,6 +1,9 @@
 const { app, BrowserWindow } = require('electron')
 const path = require("path");
 const isDev = require("electron-is-dev");
+const debug = require('electron-debug');
+
+debug();
 
 const createWindow = () => {
   const win = new BrowserWindow({
