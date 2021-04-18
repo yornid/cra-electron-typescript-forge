@@ -22,7 +22,6 @@ function App() {
           <h2>Ads</h2>
           <ul>
             <li className={s.adWrap}><iframe title="first ad" className={s.ad} frameBorder="0" scrolling="no" src="https://codecanyon.img.customer.envatousercontent.com/files/199668283/item_preview.png?auto=compress%2Cformat&q=80&fit=crop&crop=top&max-h=8000&max-w=590&s=fc8158867c973fed95f0aba517019dd2" /></li>
-            <li className={s.adWrap}><iframe title="second ad" className={s.ad} frameBorder="0" scrolling="no" src="https://codecanyon.img.customer.envatousercontent.com/files/199668283/item_preview.png?auto=compress%2Cformat&q=80&fit=crop&crop=top&max-h=8000&max-w=590&s=fc8158867c973fed95f0aba517019dd2" /></li>
           </ul>
         </div>
       </div>
