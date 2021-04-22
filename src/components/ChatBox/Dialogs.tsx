@@ -1,4 +1,4 @@
-import React, { useEffect, useLayoutEffect, useRef, useState } from 'react'
+import React, { useLayoutEffect, useRef, useState } from 'react'
 import classnames from 'classnames'
 import { observer } from 'mobx-react-lite'
 
@@ -24,11 +24,11 @@ function Dialogs({ dialogs = [] }: any) {
       }
     }, t)
   }
-  useEffect(() => () => clearInterval(sId))
   useLayoutEffect(() => {
     if (tof && el.current) {
       el.current.scrollTop = el.current.scrollHeight
     }
+    return () => clearInterval(sId)
   })
   return (
     <div ref={el} className={s.dialogs} onScroll={detectScroll}>
