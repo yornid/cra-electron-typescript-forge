@@ -1,0 +1,5 @@
+CHAT:
+- src/components/ChatBox/**/*
+
+FEED:
+- src/components/FeedBox/**/*
