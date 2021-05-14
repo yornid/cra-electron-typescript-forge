@@ -2,6 +2,7 @@ import React, { useRef, useEffect } from 'react'
 
 import s from './streamVideo.module.css';
 
+// add comments on StreamVideo
 function StreamVideo() {
   const videoRef = useRef<HTMLVideoElement>(null)
   const canvasRef = useRef<HTMLCanvasElement>(null)
