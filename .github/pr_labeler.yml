@@ -3,3 +3,6 @@ CHAT:
 
 FEED:
 - src/components/FeedBox/**/*
+
+META:
+- any: ['!src/components/ChatBox/**/*', '!src/components/FeedBox/**/*']
